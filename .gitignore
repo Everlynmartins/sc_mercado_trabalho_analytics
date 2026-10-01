@@ -1,0 +1,25 @@
+.Rhistory
+.RData
+.Rproj.user/
+
+# Downloads oficiais e resultados produzidos localmente
+fontes/
+resultados/
+
+# Arquivos que não fazem parte desta distribuição
+*.pbix
+*.pbit
+*.pbip
+*.pdf
+*.xls
+*.xlsx
+*.ods
+*.zip
+*.7z
+*.rar
+*.shp
+*.shx
+*.dbf
+*.prj
+*.cpg
+*.gpkg

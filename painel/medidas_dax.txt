@@ -1,0 +1,22 @@
+Vinculos Ativos = SUM('Estado'[vinculos_ativos])
+
+N Remuneracao Valida = SUM('Estado'[n_remuneracao_valida])
+
+Remuneracao Media Nominal =
+DIVIDE(
+    SUMX('Estado', 'Estado'[remuneracao_media_nominal] * 'Estado'[n_remuneracao_valida]),
+    [N Remuneracao Valida]
+)
+
+Variacao Anual de Vinculos =
+VAR AnoAtual = MAX('Estado'[ano])
+VAR ValorAtual = [Vinculos Ativos]
+VAR ValorAnterior =
+    CALCULATE([Vinculos Ativos], FILTER(ALL('Estado'[ano]), 'Estado'[ano] = AnoAtual - 1))
+RETURN
+    DIVIDE(ValorAtual - ValorAnterior, ValorAnterior)
+
+HHI Medio = AVERAGE('Concentracao Setorial'[hhi_concentracao_setorial])
+
+Municipios com Remuneracao Suprimida =
+COUNTROWS(FILTER('Municipios', ISBLANK('Municipios'[remuneracao_media_nominal])))
